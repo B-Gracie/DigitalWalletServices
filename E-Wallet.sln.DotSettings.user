@@ -1,0 +1,33 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=58587a97_002D0edf_002D4516_002Da220_002D268cb87950d9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddMethodShouldReturnOk" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7A6846BD-FD5A-4CF0-AE13-F84592B5CC83::net6.0::Wallet.Web.Tests.CustomerControllerTest.AddMethodShouldReturnOk&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=65a6e59d_002Daf16_002D4033_002D8ad6_002D42b7aca99e13/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllAsync_ReturnsOkResult_WithExpectedCustomers #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7A6846BD-FD5A-4CF0-AE13-F84592B5CC83::net6.0::Wallet.Web.Tests.ControllerTests.AccountManagerTest.GetAllAsync_ReturnsOkResult_WithExpectedCustomers&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c147da1b_002D3f69_002D41db_002Dbcb5_002D278440cef777/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllAsync_ReturnsOkResult_WithExpectedCustomers" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7A6846BD-FD5A-4CF0-AE13-F84592B5CC83::net6.0::Wallet.Web.Tests.ControllerTests.AccountManagerTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::76187A7B-3660-4B91-B468-C856FCBA74E8::net6.0::Wallet.DAL.Test.RepositoryTest.CustomerRepositoryTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d31e7ff3_002Daec8_002D4f36_002D856f_002Da19a8b441d79/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddMethodShouldReturnOk #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::7A6846BD-FD5A-4CF0-AE13-F84592B5CC83::net6.0::Wallet.Web.Tests.CustomerControllerTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::0F5DAF81-E479-4C46-BAE9-76FC21E3F3C2::net6.0::ControllerTests.AccountManagerTest.GetAllAsync_ReturnsOkResult_WithExpectedCustomers&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::0F5DAF81-E479-4C46-BAE9-76FC21E3F3C2::net6.0::ControllerTests.AccountManagerTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::7A6846BD-FD5A-4CF0-AE13-F84592B5CC83::net6.0::ControllerTests.AccountManagerTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::7A6846BD-FD5A-4CF0-AE13-F84592B5CC83::net6.0::Wallet.Web.Tests.ControllerTests.AccountManagerTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f727d1f0_002D36ab_002D47d0_002Daa3c_002D942d34d36c22/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AddMethodShouldReturnOk #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::76187A7B-3660-4B91-B468-C856FCBA74E8::net6.0::Wallet.DAL.Test.RepositoryTest.CustomerRepositoryTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

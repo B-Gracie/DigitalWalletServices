@@ -1,0 +1,19 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.8"
+services:
+  pgadmin:
+    build:
+      context: "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL"
+      dockerfile: "Dockerfile"
+      target: "build-env"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net6.0/Wallet.DAL.dll"
+    environment:
+      DOTNET_ENVIRONMENT: "Development"
+    image: "dpage/pgadmin4:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL:/app:rw"
+    working_dir: "/app"

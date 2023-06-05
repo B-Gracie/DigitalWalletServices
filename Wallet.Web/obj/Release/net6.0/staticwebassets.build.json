@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "zaWve2Cq3Jqq+dql+1lOuPXWqh2x4WkyfOpR7YqjeAs=",
+  "Source": "Wallet.Web",
+  "BasePath": "_content/Wallet.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
