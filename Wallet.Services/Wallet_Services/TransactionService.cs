@@ -41,7 +41,7 @@ public class Transaction
                 throw new ArgumentException($"Account with number {accountNumber} not found.");
             }
             account.Balance += amount;
-            _repository.UpdateAsync(account);
+            _repository.UpdateAsync(account);     
         }
 
         public async Task WithdrawAsync(string accountNumber, decimal amount)

@@ -1,0 +1,21 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build_job:
+  stage: build
+  script:
+    - dotnet build C:\Users\BukolaGrace\E-Wallet\E-Wallet.csproj
+
+
+test_job:
+  stage: test
+  script:
+    - dotnet test C:\Users\BukolaGrace\E-Wallet\Wallet.Web.Tests\ControllerTests\AccManagerTest.csproj
+
+
+deploy_job:
+  stage: deploy
+  script:
+    - echo "Deploying the project"

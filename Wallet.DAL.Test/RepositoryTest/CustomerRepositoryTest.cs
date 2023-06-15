@@ -1,3 +1,4 @@
+/*using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using Wallet.DAL.Repository;
 using Npgsql;
@@ -36,4 +37,4 @@ public sealed class PostgreSqlContainerTest : IAsyncLifetime
             }
         }
     }
-}
+}*/

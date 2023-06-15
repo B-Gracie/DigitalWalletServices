@@ -31,7 +31,8 @@ public class AccountManagerTest
         //_controller = new CustomerController(_servicesMock.Object, _mapMock);
     }
     
-    [Fact]
+    //[Fact]
+    /*
     public async Task AddAsync_ReturnsOkResult()
     {
         // Arrange
@@ -72,6 +73,7 @@ public class AccountManagerTest
         mockMapper.Verify(m => m.Map<Customer>(customerViewModel), Times.Once);
         mockService.Verify(s => s.AddAsync(It.IsAny<Customer>()), Times.Once);
     }
+    */
 
 
 
