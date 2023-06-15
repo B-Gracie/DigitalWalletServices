@@ -8,13 +8,13 @@ stages:
 build_job:
   stage: build
   script:
-    - dotnet build E-Wallet/E-Wallet.csproj
+    - dotnet build 
 
 
 test_job:
   stage: test
   script:
-    - dotnet test E-Wallet/Wallet.Web.Tests/ControllerTests/AccManagerTest.csproj
+    - dotnet test
 
 
 deploy_job:
