@@ -12,7 +12,7 @@ tls_verify = false
 image = "mcr.microsoft.com/dotnet/sdk:6.0"
 privileged = true
 disable_cache = false
-volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
+volumes = ["/var/run/docker.sock:/var/run/docker.sock"]
 [runners.cache]
 [runners.cache.s3]
 [runners.cache.gcs]
