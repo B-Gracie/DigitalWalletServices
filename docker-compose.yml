@@ -1,0 +1,62 @@
+version: '3.8'
+services:
+  gitlab:
+    image: gitlab/gitlab-ee:latest
+    container_name: Gitlab
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+      - '22:22'
+    volumes:
+      - '/srv/gitlab/config:/etc/gitlab'
+      - '/srv/gitlab/logs:/var/log/gitlab'
+      - '/srv/gitlab/data:/var/opt/gitlab'
+    environment:
+      - REGISTRY_ENABLED=true
+      - REGISTRY_HOST=docker-registry
+      - REGISTRY_PORT=5000
+    networks:
+      - gitlab-network
+
+  jenkins:
+    image: jenkins/jenkins:latest
+    container_name: Jenkins
+    restart: always
+    ports:
+      - '8081:8080'
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    networks:
+      - gitlab-network
+
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    container_name: Gitlab-Runner
+    restart: always
+    volumes:
+      - './config.toml:/etc/gitlab-runner/config.toml'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    networks:
+      - gitlab-network
+
+  docker-registry:
+    image: registry:latest
+    container_name: docker_registry
+    restart: always
+    ports:
+      - '7000:5000'
+    environment:
+      - REGISTRY_HTTP_SECRET=Adminpassword
+    volumes:
+      - ./registry:/var/lib/registry
+    networks:
+      - gitlab-network
+        
+
+
+networks:
+  gitlab-network:
+
+volumes:
+  jenkins_home:
