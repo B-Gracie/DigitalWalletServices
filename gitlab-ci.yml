@@ -11,8 +11,6 @@ variables:
 build:
   stage: build
   image: mcr.microsoft.com/dotnet/sdk:6.0
-  services:
-    - docker:dind
   script:
     - dotnet build -c Release
     - docker build -t $IMAGE_NAME .
@@ -29,8 +27,6 @@ test:
 deploy:
   stage: deploy
   image: mcr.microsoft.com/dotnet/sdk:6.0
-  services:
-    - docker:dind
   variables:
     DEPLOY_PORT: 8888
   script:
