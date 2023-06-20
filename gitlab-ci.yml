@@ -5,12 +5,12 @@ stages:
 
 variables:
   IMAGE_NAME: my-wallet
-  DOCKER_REGISTRY: 192.168.0.130:7000
+  DOCKER_REGISTRY: 192.168.0.101:7000
   DOCKER_IMAGE_TAG: $CI_COMMIT_REF_SLUG
 
 build:
   stage: build
-  image: mcr.microsoft.com/dotnet/sdk:7.0
+  image: mcr.microsoft.com/dotnet/sdk:6.0
   script:
     - dotnet build -c Release --source https://api.nuget.org/v3/index.json
     - docker build -t $IMAGE_NAME .
@@ -20,13 +20,13 @@ build:
 
 test:
   stage: test
-  image: mcr.microsoft.com/dotnet/sdk:7.0
+  image: mcr.microsoft.com/dotnet/sdk:6.0
   script:
     - dotnet test --no-restore --source https://api.nuget.org/v3/index.json
 
 deploy:
   stage: deploy
-  image: mcr.microsoft.com/dotnet/sdk:7.0
+  image: mcr.microsoft.com/dotnet/sdk:6.0
   variables:
     DEPLOY_PORT: 8888
   script:
