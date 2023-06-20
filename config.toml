@@ -6,11 +6,11 @@ shutdown_timeout = 0
   session_timeout = 1800
 
 [[runners]]
-  name = "My Docker Runner"
+  name = "My Docker runner"
   url = "http://192.168.0.130/"
-  id = 2
-  token = "aHBy6TVxKrpu3he6ZbTX"
-  token_obtained_at = 2023-06-19T17:53:00Z
+  id = 1
+  token = "EUKcJqJQYyQ2FiMhp1Ad"
+  token_obtained_at = 2023-06-20T10:02:50Z
   token_expires_at = 0001-01-01T00:00:00Z
   executor = "docker"
   [runners.cache]
