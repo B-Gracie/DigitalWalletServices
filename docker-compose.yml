@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   gitlab:
     image: gitlab/gitlab-ee:latest
@@ -15,7 +16,7 @@ services:
     environment:
       - REGISTRY_ENABLED=true
       - REGISTRY_HOST=docker-registry
-      - REGISTRY_PORT=5000
+      - REGISTRY_PORT=7000
     networks:
       - gitlab-network
 
@@ -39,7 +40,8 @@ services:
       - '/var/run/docker.sock:/var/run/docker.sock'
     networks:
       - gitlab-network
-
+    privileged: true   # Enable privileged mode for DinD
+  
   docker-registry:
     image: registry:latest
     container_name: docker_registry
@@ -54,8 +56,6 @@ services:
       - ./registry:/var/lib/registry
     networks:
       - gitlab-network
-        
-
 
 networks:
   gitlab-network:
