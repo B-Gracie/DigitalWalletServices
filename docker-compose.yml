@@ -41,6 +41,7 @@ services:
     networks:
       - gitlab-network
     privileged: true   # Enable privileged mode for DinD
+    
   
   docker-registry:
     image: registry:latest

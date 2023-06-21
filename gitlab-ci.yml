@@ -4,13 +4,8 @@ stages:
   - deploy
 
 variables:
-<<<<<<< HEAD
   IMAGE_NAME: my-wallet
   DOCKER_REGISTRY: 192.168.0.130:7000
-=======
-  IMAGE_NAME: my-app
-  DOCKER_REGISTRY: 192.168.0.101:7000
->>>>>>> 3e0cceb6e1bd98bf0dcd53165c905e0d774fe06f
   DOCKER_IMAGE_TAG: $CI_COMMIT_REF_SLUG
 
 build:
