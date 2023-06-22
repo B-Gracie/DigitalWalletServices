@@ -7,12 +7,15 @@ variables:
   IMAGE_NAME: my-wallet
   DOCKER_REGISTRY: 192.168.0.130:7000
   DOCKER_IMAGE_TAG: $CI_COMMIT_REF_SLUG
+  DOCKER_HOST: tcp://127.0.0.1:2375   # Add the DOCKER_HOST variable
 
 build:
   stage: build
-  image: mcr.microsoft.com/dotnet/sdk:6.0
+  image: gitlab/gitlab-runner:latest
+  services:
+    - docker:dind   # Add the DinD service
   script:
-    - dotnet build -c Release --source https://api.nuget.org/v3/index.json
+    - docker info   # Verify Docker connectivity
     - docker build -t $IMAGE_NAME .
     - echo $DOCKER_REGISTRY_PASSWORD | docker login --username $DOCKER_REGISTRY_USERNAME --password-stdin $DOCKER_REGISTRY
     - docker tag $IMAGE_NAME:latest $DOCKER_REGISTRY/E-Wallet/$IMAGE_NAME:$DOCKER_IMAGE_TAG
@@ -20,16 +23,22 @@ build:
 
 test:
   stage: test
-  image: mcr.microsoft.com/dotnet/sdk:6.0
+  image: gitlab/gitlab-runner:latest
+  services:
+    - docker:dind   # Add the DinD service
   script:
+    - docker info   # Verify Docker connectivity
     - dotnet test --no-restore --source https://api.nuget.org/v3/index.json
 
 deploy:
   stage: deploy
-  image: mcr.microsoft.com/dotnet/sdk:6.0
+  image: gitlab/gitlab-runner:latest
+  services:
+    - docker:19-dind   # Add the DinD service
   variables:
     DEPLOY_PORT: 8888
   script:
+    - docker info   # Verify Docker connectivity
     - echo $DOCKER_REGISTRY_PASSWORD | docker login --username $DOCKER_REGISTRY_USERNAME --password-stdin $DOCKER_REGISTRY
     - docker pull $DOCKER_REGISTRY/E-Wallet/$IMAGE_NAME:$DOCKER_IMAGE_TAG
     - docker run -d --name my-app-container -p $DEPLOY_PORT:8888 $DOCKER_REGISTRY/E-Wallet/$IMAGE_NAME:$DOCKER_IMAGE_TAG dotnet run --project E-Wallet.sln
