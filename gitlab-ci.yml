@@ -7,9 +7,10 @@ stages:
 
 variables:
   IMAGE_NAME: my-app
-  DOCKER_REGISTRY: 192.168.0.130:7000
+  DOCKER_REGISTRY: 192.168.0.137:7000
   DOCKER_IMAGE_TAG: $CI_COMMIT_REF_SLUG
-  DOCKER_HOST: tcp://127.0.0.1:2375
+  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_HOST: tcp://docker:2375
 
 build:
   stage: build
