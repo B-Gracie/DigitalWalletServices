@@ -13,12 +13,30 @@ shutdown_timeout = 0
   token_obtained_at = 2023-06-23T15:11:32Z
   token_expires_at = 0001-01-01T00:00:00Z
   executor = "docker"
+  [runners.docker]
+    tls_verify = false
+    image = "docker:latest"
+    privileged = true
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
+    disable_cache = false
+    volumes = ["/cache"]
+    shm_size = 0
+
+[[runners]]
+  name = "My Docker Runner"
+  url = "http://192.168.234.145/"
+  id = 1
+  token = "RyKngvnZCjVooTuL4mgL"
+  token_obtained_at = 2023-06-26T12:40:10Z
+  token_expires_at = 0001-01-01T00:00:00Z
+  executor = "docker"
   [runners.cache]
     MaxUploadedArchiveSize = 0
   [runners.docker]
     tls_verify = false
     image = "docker:latest"
-    privileged = true
+    privileged = false
     disable_entrypoint_overwrite = false
     oom_kill_disable = false
     disable_cache = false

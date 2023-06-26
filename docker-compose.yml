@@ -42,7 +42,6 @@ services:
       - gitlab-network
     privileged: true   # Enable privileged mode for DinD
     
-  
   docker-registry:
     image: registry:latest
     container_name: docker_registry
@@ -51,15 +50,18 @@ services:
       - '7000:5000'
     environment:
       - REGISTRY_HTTP_SECRET=Adminpassword
-      - REGISTRY_USERNAME=root
-      - REGISTRY_PASSWORD=Bookey@16
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
     volumes:
       - ./registry:/var/lib/registry
+      - ./auth:/auth
     networks:
       - gitlab-network
 
 networks:
   gitlab-network:
+    driver: bridge
 
 volumes:
   jenkins_home:
