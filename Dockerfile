@@ -1,3 +1,4 @@
+# Build stage
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /app
 
@@ -20,12 +21,12 @@ RUN dotnet restore Wallet.Web/Wallet.Web.csproj
 COPY . .
 
 # Publish the Web project
-RUN dotnet publish Wallet.Web/Wallet.Web.csproj -c Release -o out
+RUN dotnet publish Wallet.Web/Wallet.Web.csproj -c Release -o /app/out
 
-# Build the runtime image
+# Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 WORKDIR /app
-COPY --from=build-env /app/out ./
+COPY --from=build-env /app/out .
 
 # Set the entry point
 ENTRYPOINT ["dotnet", "Wallet.Web.dll"]
