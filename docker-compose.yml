@@ -7,7 +7,6 @@ services:
     restart: always
     ports:
       - '80:80'
-      - '443:443'
       - '22:22'
     volumes:
       - '/srv/gitlab/config:/etc/gitlab'
@@ -41,21 +40,19 @@ services:
     networks:
       - gitlab-network
     privileged: true   # Enable privileged mode for DinD
-    
+  
   docker-registry:
     image: registry:latest
     container_name: docker_registry
     restart: always
     ports:
-      - '7000:5000'
+      - '443:5000'
     environment:
-      - REGISTRY_HTTP_SECRET=Adminpassword
-      - REGISTRY_AUTH=htpasswd
-      - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
-      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/server.crt
+      - REGISTRY_HTTP_TLS_KEY=/certs/private.key
     volumes:
       - ./registry:/var/lib/registry
-      - ./auth:/auth
+      - ./certs:/certs
     networks:
       - gitlab-network
 
