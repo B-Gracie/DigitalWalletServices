@@ -1,0 +1,44 @@
+image: docker:stable
+
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  IMAGE_NAME: my-app
+  DOCKER_REGISTRY_URL: "https://192.168.0.130/v2/"
+  DOCKER_REGISTRY_LOGIN: root
+  DOCKER_REGISTRY_PASSWORD: htpassword
+
+services:
+  - docker:dind
+
+before_script:
+  - docker info
+
+build:
+  only:
+    - master
+  before_script:
+    - echo $DOCKER_REGISTRY_PASSWORD | docker login $DOCKER_REGISTRY_URL -u $DOCKER_REGISTRY_LOGIN --password-stdin
+  script:
+    - docker build -t $DOCKER_REGISTRY_URL/e-wallet:latest .
+    - docker push $DOCKER_REGISTRY_URL/e-wallet:latest
+  stage: build
+  tags:
+    - docker
+
+deploy:
+  stage: deploy
+  services:
+    - docker:dind
+  variables:
+    DEPLOY_PORT: 8888
+  script:
+    - docker info
+    - echo $DOCKER_REGISTRY_PASSWORD | docker login --username $DOCKER_REGISTRY_LOGIN --password-stdin $DOCKER_REGISTRY_URL
+    - docker pull $DOCKER_REGISTRY_URL/e-wallet/$IMAGE_NAME:$DOCKER_IMAGE_TAG
+    - docker run -d --name my-app-container -p $DEPLOY_PORT:8888 $DOCKER_REGISTRY_URL/e-wallet/$IMAGE_NAME:$DOCKER_IMAGE_TAG dotnet run --project E-Wallet.sln
+  dependencies:
+    - build
