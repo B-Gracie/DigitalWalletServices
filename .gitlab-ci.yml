@@ -7,7 +7,7 @@ stages:
 
 variables:
   IMAGE_NAME: my-app
-  DOCKER_REGISTRY_URL: "https://192.168.0.130:443/v2/"
+  DOCKER_REGISTRY_URL: "https://192.168.0.130:443"
   DOCKER_REGISTRY_LOGIN: root
   DOCKER_REGISTRY_PASSWORD: htpassword
 
@@ -23,8 +23,8 @@ build:
   before_script:
     - echo $DOCKER_REGISTRY_PASSWORD | docker login $DOCKER_REGISTRY_URL -u $DOCKER_REGISTRY_LOGIN --password-stdin
   script:
-    - docker build -t $DOCKER_REGISTRY_URL/e-wallet:latest .
-    - docker push $DOCKER_REGISTRY_URL/e-wallet:latest
+    - docker build -t $DOCKER_REGISTRY_URL/E-wallet:latest .
+    - docker push $DOCKER_REGISTRY_URL/E-wallet:latest
   stage: build
   tags:
     - docker
