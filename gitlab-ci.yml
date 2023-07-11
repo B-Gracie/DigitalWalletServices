@@ -9,7 +9,7 @@ variables:
   IMAGE_NAME: my-app
   DOCKER_REGISTRY_URL: https://192.168.0.130/v2/
   DOCKER_REGISTRY_LOGIN: root
-  DOCKER_REGISTRY_PASSWORD: htpassword
+  DOCKER_REGISTRY_PASSWORD: Bookey@16
 
 services:
   - docker:dind
