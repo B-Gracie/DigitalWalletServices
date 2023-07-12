@@ -6,11 +6,11 @@ shutdown_timeout = 0
   session_timeout = 1800
 
 [[runners]]
-  name = "My Docker Runner"
+  name = "Wallet Runner"
   url = "http://192.168.0.130/"
   id = 1
-  token = "5oP-iwxxQ5G3yjAzpqbs"
-  token_obtained_at = 2023-07-11T14:29:06Z
+  token = "pVYjWS6Atzc-8KJ6DhDX"
+  token_obtained_at = 2023-07-12T14:32:08Z
   token_expires_at = 0001-01-01T00:00:00Z
   executor = "docker"
   [runners.docker]
@@ -27,8 +27,8 @@ shutdown_timeout = 0
   name = "Wallet Runner"
   url = "http://192.168.0.130/"
   id = 1
-  token = "pVYjWS6Atzc-8KJ6DhDX"
-  token_obtained_at = 2023-07-12T14:32:08Z
+  token = "KXUAZWuWGXwtxqgNy9un"
+  token_obtained_at = 2023-07-12T15:32:20Z
   token_expires_at = 0001-01-01T00:00:00Z
   executor = "docker"
   [runners.cache]
