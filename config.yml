@@ -1,0 +1,11 @@
+version: 0.1
+log:
+  level: info
+http:
+  addr: 0.0.0.0:443
+  tls:
+    certificate: /certs/server.crt
+    key: /certs/private.key
+storage:
+  filesystem:
+    rootdirectory: /var/lib/registry

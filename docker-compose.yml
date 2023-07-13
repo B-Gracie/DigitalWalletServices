@@ -48,16 +48,14 @@ services:
     ports:
       - '443:5000'
     environment:
-      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/server.crt
-      - REGISTRY_HTTP_TLS_KEY=/certs/private.key
-      - REGISTRY_AUTH=htpasswd
-      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+      - REGISTRY_CONFIG=/etc/docker/registry/config.yml
     volumes:
       - ./registry:/var/lib/registry
       - ./certs:/certs
-      - ./auth:/auth
+      - ./config.yml:/etc/docker/registry/config.yml:ro
     networks:
       - gitlab-network
+  
 
 networks:
   gitlab-network:
