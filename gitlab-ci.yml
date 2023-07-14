@@ -8,8 +8,6 @@ stages:
 variables:
   IMAGE_NAME: my-app
   DOCKER_REGISTRY_URL: https://192.168.0.130:443
-  DOCKER_REGISTRY_LOGIN: root
-  DOCKER_REGISTRY_PASSWORD: Bookey@16
 
 services:
   - docker:dind
@@ -20,14 +18,21 @@ before_script:
 build:
   only:
     - master
-  before_script:
-    - echo $DOCKER_REGISTRY_PASSWORD | docker login $DOCKER_REGISTRY_URL/v2/ -u $DOCKER_REGISTRY_LOGIN --password-stdin
   script:
-    - docker build -t $DOCKER_REGISTRY_URL/v2/E-Wallet:latest .
-    - docker push $DOCKER_REGISTRY_URL/v2/E-Wallet:latest
+    - docker build -t root/my-app:latest .
+    - docker push root/my-app:latest
   stage: build
   tags:
     - docker
+test:
+  stage: test
+  services:
+    - docker:dind
+  script:
+    - docker info
+    - dotnet test --no-restore --source https://api.nuget.org/v3/index.json
+  dependencies:
+    - build
 
 deploy:
   stage: deploy
@@ -37,8 +42,7 @@ deploy:
     DEPLOY_PORT: 8888
   script:
     - docker info
-    - echo $DOCKER_REGISTRY_PASSWORD | docker login --username $DOCKER_REGISTRY_LOGIN --password-stdin $DOCKER_REGISTRY_URL/v2/
-    - docker pull $DOCKER_REGISTRY_URL/v2/E-Wallet/$IMAGE_NAME:$DOCKER_IMAGE_TAG
-    - docker run -d --name my-app-container -p $DEPLOY_PORT:8888 $DOCKER_REGISTRY_URL/v2/E-Wallet/$IMAGE_NAME:$DOCKER_IMAGE_TAG dotnet run --project E-Wallet.sln
+    - docker pull $DOCKER_REGISTRY_URL/$IMAGE_NAME:latest
+    - docker run -d --name my-app-container -p $DEPLOY_PORT:8888 $DOCKER_REGISTRY_URL/$IMAGE_NAME:latest dotnet run --project E-Wallet.sln
   dependencies:
     - build
