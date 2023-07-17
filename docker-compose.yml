@@ -6,8 +6,7 @@ services:
     container_name: Gitlab
     restart: always
     ports:
-      - '80:80'
-      - '22:22'
+      - '8080:80'     
     volumes:
       - '/srv/gitlab/config:/etc/gitlab'
       - '/srv/gitlab/logs:/var/log/gitlab'
@@ -15,7 +14,8 @@ services:
     environment:
       - REGISTRY_ENABLED=true
       - REGISTRY_HOST=docker-registry
-      - REGISTRY_PORT=7000
+      - REGISTRY_PORT=443
+      - GITLAB_PORT=8080   
     networks:
       - gitlab-network
 
@@ -24,7 +24,7 @@ services:
     container_name: Jenkins
     restart: always
     ports:
-      - '8081:8080'
+      - '8081:8080'   
     volumes:
       - jenkins_home:/var/jenkins_home
     networks:
@@ -39,23 +39,26 @@ services:
       - '/var/run/docker.sock:/var/run/docker.sock'
     networks:
       - gitlab-network
-    privileged: true   # Enable privileged mode for DinD
+    privileged: true   
   
   docker-registry:
     image: registry:latest
     container_name: docker_registry
     restart: always
     ports:
-      - '443:5000'
+      - '8443:443'    
     environment:
       - REGISTRY_CONFIG=/etc/docker/registry/config.yml
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
     volumes:
       - ./registry:/var/lib/registry
       - ./certs:/certs
       - ./config.yml:/etc/docker/registry/config.yml:ro
+      - ./auth:/auth
     networks:
       - gitlab-network
-  
 
 networks:
   gitlab-network:

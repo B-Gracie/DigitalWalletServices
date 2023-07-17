@@ -5,31 +5,14 @@ shutdown_timeout = 0
 [session_server]
   session_timeout = 1800
 
-[[runners]]
-  name = "Wallet Runner"
-  url = "http://192.168.0.130"
-  id = 1
-  token = "WLMkB8VaqmSf_CWuhCj-"
-  token_obtained_at = 2023-07-13T13:17:22Z
-  token_expires_at = 0001-01-01T00:00:00Z
-  executor = "docker"
-  [runners.docker]
-    tls_verify = false
-    image = "docker:stable"
-    privileged = true
-    disable_entrypoint_overwrite = false
-    oom_kill_disable = false
-    disable_cache = false
-    volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
-    extra_hosts = ["host.docker.internal:host-gateway"]
-    shm_size = 0
+
 
 [[runners]]
   name = "My Docker Runner"
-  url = "http://192.168.0.130"
+  url = "http://192.168.0.130:8080/"
   id = 1
-  token = "n-YhU2xsNac-TtiHXvMz"
-  token_obtained_at = 2023-07-14T09:41:00Z
+  token = "j8z_6F8mtB2QbebzAQcB"
+  token_obtained_at = 2023-07-17T14:33:12Z
   token_expires_at = 0001-01-01T00:00:00Z
   executor = "docker"
   [runners.cache]
@@ -42,6 +25,6 @@ shutdown_timeout = 0
     disable_entrypoint_overwrite = false
     oom_kill_disable = false
     disable_cache = false
-  volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
-  extra_hosts = ["host.docker.internal:host-gateway"]
-  shm_size = 0
+   volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
+   extra_hosts = ["host.docker.internal:host-gateway"]
+    shm_size = 0
