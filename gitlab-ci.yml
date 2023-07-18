@@ -13,8 +13,8 @@ services:
   - docker:dind
 
 before_script:
-  - mkdir -p /certs
-  - cp "C:\Users\BukolaGrace\E-Wallet\certs\192.168.0.130.crt" /certs/registry.crt
+  - export DOCKER_TLS_CERTDIR=""
+  - echo "insecure" >> ~/.docker/config.json
 
 build:
   only:

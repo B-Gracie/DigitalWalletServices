@@ -6,6 +6,7 @@ http:
   tls:
     certificate: /certs/server.crt
     key: /certs/private.key
+    insecure: true
 storage:
   filesystem:
     rootdirectory: /var/lib/registry
