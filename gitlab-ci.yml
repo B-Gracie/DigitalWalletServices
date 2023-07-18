@@ -13,19 +13,17 @@ services:
   - docker:dind
 
 before_script:
+  - mkdir -p $HOME/.docker
   - export DOCKER_TLS_CERTDIR=""
-  - echo "insecure" >> ~/.docker/config.json
 
 build:
   only:
     - master
   script:
-    - docker login -u Bookey -p Bookey_16 https://192.168.0.130:8443/ --insecure
-    - docker build -t $DOCKER_REGISTRY_URL/$IMAGE_NAME:latest .
-    - docker push $DOCKER_REGISTRY_URL/$IMAGE_NAME:latest
+    - docker login -u Bookey -p Bookey_16 https://192.168.0.130:8443/
+    - docker build -t bookey/my_app:latest .
+    - docker push 192.168.0.130:8443/bookey/my-app:latest
   stage: build
-  tags:
-    - docker
 
 test:
   stage: test
@@ -44,8 +42,8 @@ deploy:
   variables:
     DEPLOY_PORT: 8888
   script:
-    - docker login -u Bookey -p Bookey_16 https://192.168.0.130:8443/ --insecure
-    - docker pull $DOCKER_REGISTRY_URL/$IMAGE_NAME:latest
-    - docker run -d --name my-app-container -p $DEPLOY_PORT:8888 $DOCKER_REGISTRY_URL/$IMAGE_NAME:latest dotnet run --project E-Wallet.sln
+    - docker login -u Bookey -p Bookey_16 $DOCKER_REGISTRY_URL
+    - docker pull $DOCKER_REGISTRY_URL/bookey/my-app:latest
+    - docker run -d --name my-app-container -p $DEPLOY_PORT:8888 $DOCKER_REGISTRY_URL/bookey/my-app:latest dotnet run --project E-Wallet.sln
   dependencies:
     - build
