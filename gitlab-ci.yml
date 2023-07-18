@@ -8,19 +8,19 @@ stages:
 variables:
   IMAGE_NAME: my-app
   DOCKER_REGISTRY_URL: https://192.168.0.130:8443/
-  HTPASSWD_FILE: ./auth/htpasswd
 
 services:
   - docker:dind
 
 before_script:
-  - docker info
+  - mkdir -p /certs
+  - cp "C:\Users\BukolaGrace\E-Wallet\certs\192.168.0.130.crt" /certs/registry.crt
 
 build:
   only:
     - master
   script:
-    - docker login -u $DOCKER_REGISTRY_USERNAME -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URL
+    - docker login -u Bookey -p Bookey_16 https://192.168.0.130:8443/ --insecure
     - docker build -t $DOCKER_REGISTRY_URL/$IMAGE_NAME:latest .
     - docker push $DOCKER_REGISTRY_URL/$IMAGE_NAME:latest
   stage: build
@@ -33,7 +33,6 @@ test:
     - docker:dind
   image: mcr.microsoft.com/dotnet/sdk:6.0-focal
   script:
-    - docker info
     - dotnet test --no-restore
   dependencies:
     - build
@@ -44,10 +43,9 @@ deploy:
     - docker:dind
   variables:
     DEPLOY_PORT: 8888
-    HTPASSWD_CONTENT: "Bookey:$2y$05$UEyv6WeRQUAwXTxNsgBVtOHoaqqR1r78sfUAEAIczGZvIF0ocwiyG"
   script:
-    - docker login -u $DOCKER_REGISTRY_USERNAME -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URL
+    - docker login -u Bookey -p Bookey_16 https://192.168.0.130:8443/ --insecure
     - docker pull $DOCKER_REGISTRY_URL/$IMAGE_NAME:latest
-    - docker run -d --name my-app-container -p $DEPLOY_PORT:8888 --env "HTPASSWD_CONTENT=$HTPASSWD_CONTENT" $DOCKER_REGISTRY_URL/$IMAGE_NAME:latest dotnet run --project E-Wallet.sln
+    - docker run -d --name my-app-container -p $DEPLOY_PORT:8888 $DOCKER_REGISTRY_URL/$IMAGE_NAME:latest dotnet run --project E-Wallet.sln
   dependencies:
     - build
