@@ -6,8 +6,8 @@ stages:
   - deploy
 
 variables:
-  IMAGE_NAME: my-app
-  DOCKER_REGISTRY_URL: https://192.168.0.130:8443/
+  DOCKER_REGISTRY_URL: 192.168.0.130:8443
+  IMAGE_NAME: bookey/my-app
 
 services:
   - docker:dind
@@ -21,7 +21,7 @@ build:
     - master
   script:
     - docker login -u Bookey -p Bookey_16 https://192.168.0.130:8443/
-    - docker build -t bookey/my_app:latest .
+    - docker build -t 192.168.0.130:8443/bookey/my-app:latest .
     - docker push 192.168.0.130:8443/bookey/my-app:latest
   stage: build
 
@@ -41,9 +41,10 @@ deploy:
     - docker:dind
   variables:
     DEPLOY_PORT: 8888
+    APP_URL: http://192.168.0.130:8888 
   script:
     - docker login -u Bookey -p Bookey_16 $DOCKER_REGISTRY_URL
     - docker pull $DOCKER_REGISTRY_URL/bookey/my-app:latest
-    - docker run -d --name my-app-container -p $DEPLOY_PORT:8888 $DOCKER_REGISTRY_URL/bookey/my-app:latest dotnet run --project E-Wallet.sln
+    - docker run -d --name my-app-container -p $DEPLOY_PORT:8888 -e APP_URL=$APP_URL $DOCKER_REGISTRY_URL/bookey/my-app:latest dotnet run --project E-Wallet.sln
   dependencies:
     - build

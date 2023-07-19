@@ -29,4 +29,4 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 
 # Set the entry point
-ENTRYPOINT ["dotnet", "Wallet.Web.dll"]
+CMD ["dotnet", "Wallet.Web.dll", "--cpus", "100"]
