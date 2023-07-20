@@ -40,12 +40,13 @@ deploy:
   services:
     - docker:dind
   variables:
+    DOCKER_REGISTRY_URL: 192.168.0.130:8443
     DEPLOY_PORT: 8888
     APP_URL: http://192.168.0.130:8888
   script:
     - docker login -u Bookey -p Bookey_16 $DOCKER_REGISTRY_URL
     - docker pull $DOCKER_REGISTRY_URL/bookey/my-app:latest
-    - docker run -d --name my-app-container -p $DEPLOY_PORT:8888 -e APP_URL=$APP_URL mcr.microsoft.com/dotnet/sdk:6.0 dotnet /app/Wallet.Web.exe
+    - docker run -d --name my-app-container -p $DEPLOY_PORT:8888 -e APP_URL=$APP_URL $DOCKER_REGISTRY_URL/bookey/my-app:latest dotnet run --project /app/Wallet.Web.csproj --urls=$APP_URL
   dependencies:
     - build
 
