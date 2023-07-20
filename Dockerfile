@@ -5,11 +5,17 @@ WORKDIR /app
 # Copy the solution file
 COPY E-Wallet.sln .
 
-# Copy and restore the projects
+# Copy and restore the DAL project
 COPY Wallet.DAL/Wallet.DAL.csproj ./Wallet.DAL/
+RUN dotnet restore Wallet.DAL/Wallet.DAL.csproj
+
+# Copy and restore the Services project
 COPY Wallet.Services/Wallet.Services.csproj ./Wallet.Services/
+RUN dotnet restore Wallet.Services/Wallet.Services.csproj
+
+# Copy and restore the Web project
 COPY Wallet.Web/Wallet.Web.csproj ./Wallet.Web/
-RUN dotnet restore
+RUN dotnet restore Wallet.Web/Wallet.Web.csproj
 
 # Copy the entire solution directory
 COPY . .
@@ -23,4 +29,4 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 
 # Set the entry point
-CMD ["dotnet", "Wallet.Web.exe", "--cpus", "100"]
+CMD ["dotnet", "Wallet.Web.exe"]
