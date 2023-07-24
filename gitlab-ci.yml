@@ -5,7 +5,7 @@ stages:
 
 variables:
   DOCKER_REGISTRY_URL: 192.168.0.130:8443
-  IMAGE_NAME: mywalletapp
+  IMAGE_NAME: mywallet
 
 services:
   - docker:dind
@@ -20,8 +20,8 @@ build:
   image: docker:latest
   script:
     - docker login -u Bookey -p Bookey_16 https://192.168.0.130:8443/
-    - docker build -t $DOCKER_REGISTRY_URL/mywalletapp .
-    - docker push $DOCKER_REGISTRY_URL/mywalletapp
+    - docker build -t 192.168.0.130:8443/mywallet .
+    - docker push 192.168.0.130:8443/mywallet
   stage: build
 
 test:
@@ -40,8 +40,9 @@ deploy:
   services:
     - docker:dind
   script:
-    - docker pull $DOCKER_REGISTRY_URL/mywalletapp
-    - docker run -d -p 80:80 $DOCKER_REGISTRY_URL/mywalletapp
+    - docker login -u Bookey -p Bookey_16 https://192.168.0.130:8443/
+    - docker pull 192.168.0.130:8443/mywallet
+    - docker run -d --name my-wallet-container -p 80:80 192.168.0.130:8443/mywallet
   dependencies:
-    - build
+    - test
 

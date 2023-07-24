@@ -33,8 +33,9 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 WORKDIR /app
 COPY --from=publish /app/out .
 
-# Set the entry point
+# Set the entry point and command for the application
 ENTRYPOINT ["dotnet", "Wallet.Web.exe"]
+CMD ["--environment=production"]
 
 # Set the image name
-LABEL name="mywalletapp"
+LABEL name="mywallet"
