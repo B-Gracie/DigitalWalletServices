@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2NLSR06f/BgwTJ5z6NXvWPMaHoWCWzOorLvilrKTDWQ+ALDmy+0u27att7Nb9EBlyBPRwKDU/qWOuLLOM2SwaQ==",
+  "dgSpecHash": "/XMl0u9ImzeRGMBbYVyKu4DfWUrK1vU/SrSNIpTYmsScsIHYYiJXS7c1NqsanmxRZE6yd6uZF8CaqwDkgUEpgQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
+  "projectFilePath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
@@ -34,7 +34,7 @@
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
-    "C:\\Users\\BukolaGrace\\.nuget\\packages\\npgsql\\7.0.2\\npgsql.7.0.2.nupkg.sha512",
+    "C:\\Users\\BukolaGrace\\.nuget\\packages\\npgsql\\8.0.0-preview.4\\npgsql.8.0.0-preview.4.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\system.componentmodel.annotations\\4.4.1\\system.componentmodel.annotations.4.4.1.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",

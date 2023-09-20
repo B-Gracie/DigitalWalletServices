@@ -48,8 +48,8 @@ services:
     ports:
       - '8443:443'    
     environment:
-      - REGISTRY_USERNAME=Bookey
-      - REGISTRY_PASSWORD=Bookey_16
+      - REGISTRY_USERNAME=user
+      - REGISTRY_PASSWORD=admin
       - REGISTRY_AUTH=none
     volumes:
       - ./registry:/var/lib/registry
@@ -57,6 +57,22 @@ services:
       - ./config.yml:/etc/docker/registry/config.yml:ro
     networks:
       - gitlab-network
+  
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    ports:
+      - '5432:5432' 
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=wallet
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - gitlab-network
+
 
 networks:
   gitlab-network:
@@ -64,3 +80,4 @@ networks:
 
 volumes:
   jenkins_home:
+  postgres_data:

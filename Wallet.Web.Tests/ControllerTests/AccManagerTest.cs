@@ -4,165 +4,113 @@ using Moq;
 using Wallet.DAL.Entities;
 using Wallet.Services.Service_Interfaces;
 using Wallet.Web.Controllers;
+using Wallet.Web;
+using Xunit.Sdk;
 
 namespace Wallet.Web.Tests.ControllerTests;
 
 public class AccountManagerTest
 {
-    private readonly Mock<IAccountManager> _servicesMock;
 
-    private readonly IMapper _mapMock;
-
-    private readonly CustomerController _controller;
-
-    //= new();
+    private readonly Mock<IAccountManager> _mockAccountManager;
+    private readonly Mock<IMapper> _mockMapper;
+    private readonly CustomerController _customerController;
 
     public AccountManagerTest()
     {
-        
-         _servicesMock = new Mock<IAccountManager>();
-        //var mockMapper = new Mock<IMapper>();
-        //_controller = new CustomerController(_servicesMock.Object, mockMapper.Object);
-        //
-        //_servicesMock = new Mock<IAccountManager>();
-
-        _mapMock = new MapperConfiguration (cfg => { cfg.AddProfile(new CustomerProfile()); }).CreateMapper();
-
-        //_controller = new CustomerController(_servicesMock.Object, _mapMock);
+        _mockAccountManager = new Mock<IAccountManager>();
+        _mockMapper = new Mock<IMapper>();
+        _customerController = new CustomerController(_mockAccountManager.Object, _mockMapper.Object);
     }
-    
-    //[Fact]
-    /*
-    public async Task AddAsync_ReturnsOkResult()
+
+ 
+    [Fact]
+    public async Task GetAllAsync_ReturnsOkResult_WithListOfCustomer()
     {
         // Arrange
-        var mockService = new Mock<IAccountManager>();
-        var mockMapper = new Mock<IMapper>();
-        var controller = new CustomerController(mockService.Object, mockMapper.Object);
+        var customers = new List<Customer>
+        {
+            new() { Id = 1, FirstName = "John" },
+            new() { Id = 2, FirstName = "Ally" }
+        };
 
-        var customerViewModel = new CustomerViewModel
+        var customerViewModels = new List<CustomerViewModel>
         {
-            FirstName = "James",
-            LastName = "Test",
-            Email = "james@test.com",
-            Username = "JaT",
-            Password = "test",
-            AccountNum = "1234567890",
-            Balance = 50
+            new() { FirstName = "John" },
+            new() { FirstName = "Ally" }
         };
-        var customer = new Customer
-        {
-            FirstName = "James",
-            LastName = "Test",
-            Email = "james@test.com",
-            Username = "JaT",
-            Password = "test",
-            AccountNum = "1234567890",
-            Balance = 50
-        };
-        mockMapper.Setup(m => m.Map<Customer>(customerViewModel)).Returns(customer);
-        mockService.Setup(s => s.AddAsync(It.IsAny<Customer>())).ReturnsAsync(customer);
+
+        _mockAccountManager.Setup(service => service.GetAllAsync()).ReturnsAsync(customers);
+        _mockMapper.Setup(mapper => mapper.Map<IEnumerable<CustomerViewModel>>(customers)).Returns(customerViewModels);
 
         // Act
-        var result = await controller.AddAsync(customerViewModel);
+        var result = await _customerController.GetAllAsync();
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        var returnedCustomerViewModels = Assert.IsAssignableFrom<IEnumerable<CustomerViewModel>>(okResult.Value);
+        Assert.Equal(customerViewModels, returnedCustomerViewModels);
+    }
+    
+
+    [Fact]
+    public async Task AddAsync_ValidCustomer_ReturnsOkResult()
+    {
+        // Arrange
+        var customerViewModel = new CustomerViewModel { FirstName = "New Customer" };
+        var customer = new Customer { FirstName = "New Customer" };
+
+        _mockMapper.Setup(mapper => mapper.Map<Customer>(customerViewModel)).Returns(customer);
+
+        // Act
+        var result = await _customerController.AddAsync(customerViewModel);
 
         // Assert
         var okResult = Assert.IsType<OkResult>(result);
-        Assert.Equal(200, okResult.StatusCode);
-
-        mockMapper.Verify(m => m.Map<Customer>(customerViewModel), Times.Once);
-        mockService.Verify(s => s.AddAsync(It.IsAny<Customer>()), Times.Once);
     }
-    */
-
 
 
     [Fact]
-    public async Task GetAllAsync_ReturnsOkResult_WithExpectedCustomers()
-{
-    // Arrange
-    var expectedCustomers = new List<Customer>
+    public async Task AddAsync_InvalidModelState_ReturnsBadRequest()
     {
-        new()
-        {
-            FirstName = "James",
-            LastName = "Test",
-            Email = "james@test.com",
-            Username = "JaT",
-            Password = "test",
-            AccountNum = "1234567890",
-            Balance = 50
+        // Arrange
+        _customerController.ModelState.AddModelError("Name", "Name is required.");
+        var invalidCustomerViewModel = new CustomerViewModel();
 
-        },
-        
-        new()
-        {
-            FirstName = "Team",
-            LastName = "Bukola",
-            Email = "team@gmail.com",
-            Password = "0909457637",
-            Username = "bukolag",
-            AccountNum = "122",
-            Balance = 100
-        },
-    };
-    var mockService = new Mock<IAccountManager>();
-    mockService.Setup(s => s.GetAllAsync()).ReturnsAsync(expectedCustomers);
+        // Act
+        var result = await _customerController.AddAsync(invalidCustomerViewModel);
 
-    var mockMapper = new Mock<IMapper>();
-    var expectedViewModels = expectedCustomers.Select(c => new CustomerViewModel
-    {
-        FirstName = c.FirstName,
-        LastName = c.LastName,
-        Email = c.Email
-    }).ToList();
-    mockMapper.Setup(m => m.Map<IEnumerable<CustomerViewModel>>(expectedCustomers))
-        .Returns(expectedViewModels);
-
-    var controller = new CustomerController(mockService.Object, mockMapper.Object);
-
-    // Act
-    var result = await controller.GetAllAsync();
-
-    // Assert
-    var okResult = Assert.IsType<OkObjectResult>(result);
-    var actualViewModels = Assert.IsAssignableFrom<IEnumerable<CustomerViewModel>>(okResult.Value);
-    Assert.Equal(expectedViewModels.Count, actualViewModels.Count());
-    for (int i = 0; i < expectedViewModels.Count; i++)
-    {
-        Assert.Equal(expectedViewModels[i].FirstName, actualViewModels.ElementAt(i).FirstName);
-        Assert.Equal(expectedViewModels[i].LastName, actualViewModels.ElementAt(i).LastName);
-        //Assert.Equal(expectedViewModels[i].Email, actualViewModels.ElementAt(i).Email);
+        // Assert
+        var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+        Assert.IsType<SerializableError>(badRequestResult.Value);
     }
-
-    mockService.Verify(s => s.GetAllAsync(), Times.Once);
-    mockMapper.Verify(m => m.Map<IEnumerable<CustomerViewModel>>(expectedCustomers), Times.Once);
-}
-
-    
-}
-
-
-
-/*[Fact]
-public async Task AddAsync_ReturnsOkResult_WhenAddSucceeds()
-{
-    var customerinfo = new CustomerViewModel()
+    [Fact]
+    public async Task GetByAccountNumber_Returns_CorrectCustomer()
     {
-        FirstName = "Team",
-        LastName = "Bukola",
-        Email = "team@gmail.com",
-        Password = "0909457637",
-        Username = "bukolag",
-        AccountNum = "122",
-        Balance = 100
-    };
+        //arrange
+        var customer = new List<Customer>
+        {
+            new()
+            {
+                FirstName = "John", LastName = "Doe", Balance = 10.0m,
+                AccountNum = "1234567890", Email = "john@up.com"
+            },
+            new()
+            {
+                FirstName = "Ally", LastName = "Doe", Balance = 20.0m,
+                AccountNum = "2150005647", Email = "ally@up.com"
+            }
+        };
+        //act
+        _mockAccountManager.Setup(x => x.GetByAccountNumber("1234567890"))
+            .ReturnsAsync(customer.Find(c => c.AccountNum == "1234567890"));
+        var result = await _customerController.GetByAccountNumber("1234567890");
+        
+        //Assert
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        var actual = Assert.IsType<Customer>(okResult.Value);
+        //Assert.Equal(customer, actual);
+        Assert.Equal("John", actual.FirstName);
 
-    Customer user = _mapMock.Map<Customer>(customerinfo);
-    
-    _servicesMock.Setup(m => m.AddAsync(user)).ReturnsAsync(user);
-    var result =  _controller.AddAsync(customerinfo);
-    
-    //Assert
-    Assert.NotNull(result);
-}*/
+    }
+}

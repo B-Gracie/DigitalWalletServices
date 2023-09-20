@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\BukolaGrace\\E-Wallet\\WalletMigrations\\WalletMigrations.csproj": {}
+    "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\WalletMigrations\\WalletMigrations.csproj": {}
   },
   "projects": {
-    "C:\\Users\\BukolaGrace\\E-Wallet\\WalletMigrations\\WalletMigrations.csproj": {
+    "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\WalletMigrations\\WalletMigrations.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\BukolaGrace\\E-Wallet\\WalletMigrations\\WalletMigrations.csproj",
+        "projectUniqueName": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\WalletMigrations\\WalletMigrations.csproj",
         "projectName": "WalletMigrations",
-        "projectPath": "C:\\Users\\BukolaGrace\\E-Wallet\\WalletMigrations\\WalletMigrations.csproj",
+        "projectPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\WalletMigrations\\WalletMigrations.csproj",
         "packagesPath": "C:\\Users\\BukolaGrace\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\BukolaGrace\\E-Wallet\\WalletMigrations\\obj\\",
+        "outputPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\WalletMigrations\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\BukolaGrace\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -46,6 +46,10 @@
               "target": "Package",
               "version": "[12.0.0, )"
             },
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.11.0, )"
+            },
             "FluentMigrator": {
               "target": "Package",
               "version": "[3.3.2, )"
@@ -79,14 +83,6 @@
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[7.0.0, )"
-            },
-            "Npgsql": {
-              "target": "Package",
-              "version": "[7.0.2, )"
-            },
-            "Npgsql.EntityFrameworkCore.PostgreSQL": {
-              "target": "Package",
-              "version": "[7.0.1, )"
             }
           },
           "imports": [

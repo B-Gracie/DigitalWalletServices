@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "PnBOAy+SZHl21mVG0e4TGl+Lx+WpOiqweN3SVs6WH7KiMXLVGmBFUfb4WZ6HzNxt+Txz6jziBdq72u9K0A7TOQ==",
+  "dgSpecHash": "fjhzJTTSRUADDcg1dRkf+eVOhCI33xA1bHA75+ElPJPyZVaLFaREVvm4IjvFE3Hnf8edL8KRaT1QsgIACIQWQw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\BukolaGrace\\E-Wallet\\WalletMigrations\\WalletMigrations.csproj",
+  "projectFilePath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\WalletMigrations\\WalletMigrations.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
+    "C:\\Users\\BukolaGrace\\.nuget\\packages\\fluentassertions\\6.11.0\\fluentassertions.6.11.0.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\fluentmigrator\\3.3.2\\fluentmigrator.3.3.2.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\fluentmigrator.abstractions\\3.3.2\\fluentmigrator.abstractions.3.3.2.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\fluentmigrator.extensions.oracle\\3.3.2\\fluentmigrator.extensions.oracle.3.3.2.nupkg.sha512",
@@ -61,8 +62,6 @@
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
-    "C:\\Users\\BukolaGrace\\.nuget\\packages\\npgsql\\7.0.2\\npgsql.7.0.2.nupkg.sha512",
-    "C:\\Users\\BukolaGrace\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.1\\npgsql.entityframeworkcore.postgresql.7.0.1.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\system.componentmodel.annotations\\4.4.1\\system.componentmodel.annotations.4.4.1.nupkg.sha512",
     "C:\\Users\\BukolaGrace\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",

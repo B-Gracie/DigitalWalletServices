@@ -532,7 +532,7 @@
           "lib/netstandard2.0/Mono.TextTemplating.dll": {}
         }
       },
-      "Npgsql/7.0.2": {
+      "Npgsql/8.0.0-preview.4": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
@@ -1407,27 +1407,25 @@
         "mono.texttemplating.nuspec"
       ]
     },
-    "Npgsql/7.0.2": {
-      "sha512": "/k12hfmg4PI0IU2UTLN6n0s/FKUfox8+RdWtzgADYZoyks7GH82WLyXm27eeqatsi/nmiK9lO3HyULlTD87szg==",
+    "Npgsql/8.0.0-preview.4": {
+      "sha512": "wvbiipddbRgaiYOij4fQYqnfDlxKz1XlpCNY7mWErF+CPmg+ujfs9u1ovx40TsV0Q7GKlgdyr6dugV15HvZ2Pw==",
       "type": "package",
-      "path": "npgsql/7.0.2",
+      "path": "npgsql/8.0.0-preview.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "lib/net5.0/Npgsql.dll",
-        "lib/net5.0/Npgsql.xml",
         "lib/net6.0/Npgsql.dll",
         "lib/net6.0/Npgsql.xml",
         "lib/net7.0/Npgsql.dll",
         "lib/net7.0/Npgsql.xml",
-        "lib/netcoreapp3.1/Npgsql.dll",
-        "lib/netcoreapp3.1/Npgsql.xml",
+        "lib/net8.0/Npgsql.dll",
+        "lib/net8.0/Npgsql.xml",
         "lib/netstandard2.0/Npgsql.dll",
         "lib/netstandard2.0/Npgsql.xml",
         "lib/netstandard2.1/Npgsql.dll",
         "lib/netstandard2.1/Npgsql.xml",
-        "npgsql.7.0.2.nupkg.sha512",
+        "npgsql.8.0.0-preview.4.nupkg.sha512",
         "npgsql.nuspec",
         "postgresql.png"
       ]
@@ -1723,7 +1721,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.3",
       "Microsoft.Extensions.Configuration >= 7.0.0",
       "Microsoft.Extensions.Configuration.Json >= 7.0.0",
-      "Npgsql >= 7.0.2"
+      "Npgsql >= 8.0.0-preview.4"
     ]
   },
   "packageFolders": {
@@ -1732,11 +1730,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
+      "projectUniqueName": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
       "projectName": "Wallet.DAL",
-      "projectPath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
+      "projectPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
       "packagesPath": "C:\\Users\\BukolaGrace\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\obj\\",
+      "outputPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\BukolaGrace\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1799,7 +1797,7 @@
           },
           "Npgsql": {
             "target": "Package",
-            "version": "[7.0.2, )"
+            "version": "[8.0.0-preview.4, )"
           }
         },
         "imports": [

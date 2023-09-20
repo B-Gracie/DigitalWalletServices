@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj": {}
+    "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj": {
+    "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
         "projectName": "Wallet.DAL",
-        "projectPath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
+        "projectPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
         "packagesPath": "C:\\Users\\BukolaGrace\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\obj\\",
+        "outputPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\BukolaGrace\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -74,7 +74,7 @@
             },
             "Npgsql": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[8.0.0-preview.4, )"
             }
           },
           "imports": [

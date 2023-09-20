@@ -6,7 +6,7 @@ public interface IRepository
 {
      public Task SaveChangesAsync();
     public Task<IEnumerable<Customer>> GetAllAsync();
-    public Task<Customer> GetByIdAsync(int userid);
+    public Task<Customer?> GetByAccountNumber(string accountNum);
     public Task AddAsync(Customer customerinfo);
 }
 

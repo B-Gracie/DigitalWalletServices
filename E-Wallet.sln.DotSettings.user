@@ -27,12 +27,17 @@
     &lt;TestId&gt;xUnit::0F5DAF81-E479-4C46-BAE9-76FC21E3F3C2::net6.0::ControllerTests.AccountManagerTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::7A6846BD-FD5A-4CF0-AE13-F84592B5CC83::net6.0::ControllerTests.AccountManagerTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::7A6846BD-FD5A-4CF0-AE13-F84592B5CC83::net6.0::Wallet.Web.Tests.ControllerTests.AccountManagerTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::7A6846BD-FD5A-4CF0-AE13-F84592B5CC83::net6.0::Wallet.Web.Tests.ControllerTests.TransactionControllerTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::76187A7B-3660-4B91-B468-C856FCBA74E8::net6.0::Wallet.DAL.Test.RepositoryTest.AccountTransactionRepositoryTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::76187A7B-3660-4B91-B468-C856FCBA74E8::net6.0::Wallet.DAL.Test.RepositoryTest.CustomerRepositoryTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f727d1f0_002D36ab_002D47d0_002Daa3c_002D942d34d36c22/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AddMethodShouldReturnOk #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Or&gt;&#xD;
     &lt;TestAncestor&gt;&#xD;
       &lt;TestId&gt;xUnit::76187A7B-3660-4B91-B468-C856FCBA74E8::net6.0::Wallet.DAL.Test.RepositoryTest.CustomerRepositoryTest&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::76187A7B-3660-4B91-B468-C856FCBA74E8::net6.0::Wallet.DAL.Test.RepositoryTest.AccountTransactionRepositoryTests.GetAccountBalanceAsync_ShouldReturnAccountBalance&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::76187A7B-3660-4B91-B468-C856FCBA74E8::net6.0::Wallet.DAL.Test.RepositoryTest.AccountTransactionRepositoryTests&lt;/TestId&gt;&#xD;
     &lt;/TestAncestor&gt;&#xD;
     &lt;ProjectFile&gt;7A6846BD-FD5A-4CF0-AE13-F84592B5CC83/d:ControllerTests/f:AccManagerTest.cs&lt;/ProjectFile&gt;&#xD;
   &lt;/Or&gt;&#xD;

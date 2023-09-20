@@ -22,9 +22,9 @@ public class CustomerRepository : IRepository
         return await _context.Customers.ToListAsync();
     }
 
-    public async Task<Customer> GetByIdAsync(int userid)
+    public async Task<Customer?> GetByAccountNumber (string accountNum)
     {
-        return await _context.Set<Customer>().FindAsync(userid);
+        return await _context.Set<Customer>().FindAsync(accountNum);
     }
 
     public async Task AddAsync(Customer customerinfo)

@@ -25,5 +25,4 @@ shutdown_timeout = 0
     disable_cache = false
     volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
     extra_hosts = ["host.docker.internal:host-gateway"]
-    volumes = ["/cache"]
     shm_size = 0

@@ -17,73 +17,102 @@ public class AccountTransactionsRepository
             _walletContext = walletContext;
 
         }
-
+ 
         public async Task<decimal> GetAccountBalanceAsync(string accountNumber)
         {
-            await using var connection = new NpgsqlConnection("Host=127.0.0.1; Port=5432; Database=postgres; Username=user; Password=admin");
-            await connection.OpenAsync();
+            var customer = await _walletContext.Customers
+                    .FirstOrDefaultAsync(c => c.AccountNum == accountNumber);
 
-            var command =
-                new NpgsqlCommand("SELECT Balance FROM Users.Transactions  WHERE AccountNum = @accountNumber",
-                    connection);
-            command.Parameters.AddWithValue("accountNumber", accountNumber);
+                // Return the account balance or 0 if no customer is found
+                return customer?.Balance ?? 0;
+            }
 
-            var balance = await command.ExecuteScalarAsync();
+        public async Task DepositAsync(string accountNumber, decimal amount)
+        {
+            if (amount <= 0)
+            {
+                throw new ArgumentException("Deposit amount must be greater than zero.");
+            }
 
-            if (balance == null || balance == DBNull.Value)
+            var existingAccount = await _walletContext.Customers
+                .FirstOrDefaultAsync(a => a.AccountNum == accountNumber);
+
+            if (existingAccount == null)
             {
                 throw new ArgumentException($"Account with account number {accountNumber} not found.");
             }
 
-            return Convert.ToDecimal(balance);
+            existingAccount.Balance += amount;
+
+            await _walletContext.SaveChangesAsync();
+
+            var transaction = new AccountTransaction
+            {
+                CustomerId = existingAccount.Id, 
+                AccountNum = accountNumber,
+                DepositAmount = amount,
+                TxnTime = DateTime.UtcNow 
+            };
+
+            _walletContext.AccountTransactions.Add(transaction);
+            await _walletContext.SaveChangesAsync();
+            
         }
-
-
-        public async Task<AccountTransaction> GetAccountByAccountNumberAsync(string accountNumber)
+        public async Task<WithdrawalResponseModel> WithdrawAsync(string accountNumber, decimal amount)
         {
-            var account = await _walletContext.AccountTransactions.SingleOrDefaultAsync
-                (a => a.AccountNum == accountNumber);
+        
 
-            if (account == null)
+            var existingAccount = await _walletContext.Customers
+                .FirstOrDefaultAsync(a => a.AccountNum == accountNumber);
+
+            if (existingAccount == null)
             {
                 throw new ArgumentException($"Account with account number {accountNumber} not found.");
             }
 
-            return account;
-        }
-
-        public async Task DepositAsync(AccountTransaction account, decimal amount)
-        {
-            account.Balance += amount;
-            await _walletContext.SaveChangesAsync();
-        }
-
-        public async Task WithdrawAsync(AccountTransaction account, decimal amount)
-        {
-            if (account.Balance < amount)
+         
+            if (existingAccount.Balance < amount)
             {
-                throw new InvalidOperationException($"Insufficient funds. Account balance is {account.Balance:C}, but withdrawal amount is {amount:C}.");
+                throw new ArgumentException($"Insufficient balance in account with account number {accountNumber}.");
             }
 
-            account.Balance -= amount;
-            await _walletContext.SaveChangesAsync();
-        }
-        public async Task SaveChangesAsync()
-        {
-            await _walletContext.SaveChangesAsync();
-        }
+            existingAccount.Balance -= amount;
 
-        public void UpdateAsync(AccountTransaction txnInfo)
-        {
-             _walletContext.AccountTransactions.Update(txnInfo);
-        }
+            var transaction = new AccountTransaction
+            {
+                CustomerId = existingAccount.Id,
+                AccountNum = accountNumber,
+                WithdrawalAmount = amount,
+                TxnTime = DateTime.UtcNow 
 
-        public async Task AddAsync(AccountTransaction txnInfo)
-        {
-        
-            await _walletContext.AccountTransactions.AddAsync(txnInfo);
-        
+            };
+            _walletContext.AccountTransactions.Add(transaction);
+            _walletContext.SaveChanges();
+
+            // Return a response object containing the updated balance
+            //return new WithdrawalResponseModel { UpdatedBalance = existingAccount.Balance };
+            return new WithdrawalResponseModel
+            {
+                WithdrawalAmount = amount,
+                TxnTime = transaction.TxnTime,
+                UpdatedBalance = existingAccount.Balance
+            };
         }
+            // var withdrawalResponse = new WithdrawalResponseModel
+            // {
+            //     WithdrawalAmount = amount,
+            //     TxnTime = DateTime.UtcNow,
+            //     UpdatedBalance = existingAccount.Balance
+            // };
+
+            // await _walletContext.SaveChangesAsync();
+            //
+            // return withdrawalResponse;
+
+            public async Task<List<AccountTransaction>> GetAllTransactionsAsync()
+        {
+            return await _walletContext.AccountTransactions.ToListAsync();
+        }   
     }
     }
 

@@ -18,54 +18,41 @@ public class Transaction
 
         public async Task<decimal> GetAccountBalanceAsync(string accountNumber)
         {
-            
-                var balance = await _repository.GetAccountBalanceAsync(accountNumber);
+            var balance = await _repository.GetAccountBalanceAsync(accountNumber);
 
-                if (balance == null)
-                {
-                    throw new ArgumentException($"Account with account number {accountNumber} not found.");
-                }
-
-                return balance;
+            if (balance == null)
+            {
+                throw new ArgumentException($"Account with account number {accountNumber} not found.");
             }
 
-        
+            return balance;
+        }
         public async Task DepositAsync(string accountNumber, decimal amount)
         {
-            var account = await _repository.GetAccountByAccountNumberAsync(accountNumber);
+            if (amount <= 0)
+            {
+                throw new ArgumentException("Deposit amount must be greater than zero.");
+            }
 
-            await _repository.DepositAsync(account, amount);
+            await _repository.DepositAsync(accountNumber, amount);
             
-            if (account == null)
-            {
-                throw new ArgumentException($"Account with number {accountNumber} not found.");
-            }
-            account.Balance += amount;
-            _repository.UpdateAsync(account);     
         }
-
-        public async Task WithdrawAsync(string accountNumber, decimal amount)
+        public async Task<WithdrawalResponseModel> WithdrawAsync(string accountNumber, decimal amount)
         {
-            var account = await _repository.GetAccountByAccountNumberAsync(accountNumber);
+            if (amount <= 0)
+            {
+                throw new ArgumentException("Withdrawal amount must be greater than zero.");
+            }
 
-            await _repository.WithdrawAsync(account, amount);
-            if (account == null)
-            {
-                throw new ArgumentException($"Account with number {accountNumber} not found.");
-            }
-            if (account.Balance < amount)
-            {
-                throw new InvalidOperationException("Insufficient funds.");
-            }
-            account.Balance -= amount;
-            _repository.UpdateAsync(account);
+            var withdrawalResponse = await _repository.WithdrawAsync(accountNumber, amount);
+
+            return withdrawalResponse;
         }
-
-        public async Task<AccountTransaction> AddAsync(AccountTransaction txnInfo)
+        
+        public async Task<List<AccountTransaction>> GetAllTransactionsAsync()
         {
-            await _repository.AddAsync(txnInfo);
-            await _repository.SaveChangesAsync();
-            return (txnInfo);
+            return await _repository.GetAllTransactionsAsync();
         }
     }
 }
+

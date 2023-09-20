@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.Web\\Wallet.Web.csproj": {}
+    "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.Web\\Wallet.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj": {
+    "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
         "projectName": "Wallet.DAL",
-        "projectPath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
+        "projectPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj",
         "packagesPath": "C:\\Users\\BukolaGrace\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\obj\\",
+        "outputPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\BukolaGrace\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -74,7 +74,7 @@
             },
             "Npgsql": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[8.0.0-preview.4, )"
             }
           },
           "imports": [
@@ -97,14 +97,14 @@
         }
       }
     },
-    "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.Services\\Wallet.Services.csproj": {
+    "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.Services\\Wallet.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.Services\\Wallet.Services.csproj",
+        "projectUniqueName": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.Services\\Wallet.Services.csproj",
         "projectName": "Wallet.Services",
-        "projectPath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.Services\\Wallet.Services.csproj",
+        "projectPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.Services\\Wallet.Services.csproj",
         "packagesPath": "C:\\Users\\BukolaGrace\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.Services\\obj\\",
+        "outputPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\BukolaGrace\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -119,8 +119,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj": {
-                "projectPath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj"
+              "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj": {
+                "projectPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj"
               }
             }
           }
@@ -158,10 +158,6 @@
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[7.0.0, )"
-            },
-            "Npgsql": {
-              "target": "Package",
-              "version": "[7.0.2, )"
             },
             "Testcontainers": {
               "target": "Package",
@@ -188,14 +184,14 @@
         }
       }
     },
-    "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.Web\\Wallet.Web.csproj": {
+    "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.Web\\Wallet.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.Web\\Wallet.Web.csproj",
+        "projectUniqueName": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.Web\\Wallet.Web.csproj",
         "projectName": "Wallet.Web",
-        "projectPath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.Web\\Wallet.Web.csproj",
+        "projectPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.Web\\Wallet.Web.csproj",
         "packagesPath": "C:\\Users\\BukolaGrace\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.Web\\obj\\",
+        "outputPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\BukolaGrace\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -210,11 +206,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj": {
-                "projectPath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj"
+              "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj": {
+                "projectPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.DAL\\Wallet.DAL.csproj"
               },
-              "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.Services\\Wallet.Services.csproj": {
-                "projectPath": "C:\\Users\\BukolaGrace\\E-Wallet\\Wallet.Services\\Wallet.Services.csproj"
+              "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.Services\\Wallet.Services.csproj": {
+                "projectPath": "C:\\Users\\BukolaGrace\\Personal Projects\\E-Wallet\\Wallet.Services\\Wallet.Services.csproj"
               }
             }
           }
@@ -253,13 +249,9 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
-            "Npgsql": {
-              "target": "Package",
-              "version": "[7.0.2, )"
-            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[8.0.0-preview.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

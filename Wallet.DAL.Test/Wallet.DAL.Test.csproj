@@ -9,7 +9,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="6.11.0" />
+        <PackageReference Include="FluentMigrator" Version="3.3.2" />
+        <PackageReference Include="FluentMigrator.Extensions.Postgres" Version="3.3.2" />
+        <PackageReference Include="FluentMigrator.Runner" Version="3.3.2" />
+        <PackageReference Include="FluentMigrator.Runner.Core" Version="3.3.2" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0-preview.4.23259.5" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+        <PackageReference Include="Npgsql" Version="8.0.0-preview.4" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.4" />
         <PackageReference Include="Testcontainers" Version="3.0.0" />
         <PackageReference Include="TestContainers.Container.Database" Version="1.5.4" />
         <PackageReference Include="TestContainers.Container.Database.PostgreSql" Version="1.5.4" />
@@ -27,6 +35,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Wallet.DAL\Wallet.DAL.csproj" />
+      <ProjectReference Include="..\Wallet.Services\Wallet.Services.csproj" />
+      <ProjectReference Include="..\Wallet.Web\Wallet.Web.csproj" />
+      <ProjectReference Include="..\WalletMigrations\WalletMigrations.csproj" />
     </ItemGroup>
 
 </Project>

@@ -12,4 +12,5 @@ public class WalletContext : DbContext
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<AccountTransaction> AccountTransactions { get; set; }
+        
     }

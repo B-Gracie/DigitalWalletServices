@@ -1,102 +1,95 @@
 using Microsoft.AspNetCore.Mvc;
-using Npgsql;
 using Wallet.TransactionsAPI.TransactionInterface;
-using Npgsql;
 
 
 namespace Wallet.Web.Controllers;
 
 [ApiController]
 [Route("transactions")]
-    public class TransactionController : ControllerBase
+public class TransactionController : ControllerBase
+{
+    private readonly ITransactionService _service;
+
+    public TransactionController(ITransactionService service)
     {
-        private readonly ITransactionService _service;
+        _service = service;
+    }
 
-        public TransactionController(ITransactionService service)
+
+    [HttpGet("accountBalance/{accountNumber}")]
+    public async Task<IActionResult> GetAccountBalance(string accountNumber)
+    {
+        try
         {
-            _service = service;
+            var balance = await _service.GetAccountBalanceAsync(accountNumber);
+            return Ok(balance);
         }
-        
-
-        [HttpGet("{accountNumber}/balance")]
-        public async Task<ActionResult<decimal>> GetAccountBalanceAsync(string accountNumber)
+        catch (ArgumentException ex)
         {
-            try
-            {
-                decimal balance = await _service.GetAccountBalanceAsync(accountNumber);
-
-                return Ok(balance);
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
-        }
-
-        
-        /*[HttpGet("{accountNumber}/balance")]
-        public async Task<ActionResult<decimal>> GetAccountBalanceAsync(string accountNumber)
-        {
-            try
-            {
-                var balance = await _service.GetAccountBalanceAsync(accountNumber);
-
-                return Ok(balance);
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
-        }*/
-
-        [HttpPost("{accountNumber}/deposit")]
-        public async Task<ActionResult> DepositAsync(string accountNumber, [FromBody] decimal amount)
-        {
-            try
-            {
-                await _service.DepositAsync(accountNumber, amount);
-
-                return NoContent();
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
-        }
-
-        [HttpPost("{accountNumber}/withdraw")]
-        public async Task<ActionResult> WithdrawAsync(string accountNumber, [FromBody] decimal amount)
-        {
-            try
-            {
-                await _service.WithdrawAsync(accountNumber, amount);
-
-                return NoContent();
-            }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
+            return NotFound(ex.Message);
         }
     }
+
+    [HttpPost("deposit")]
+    public async Task<IActionResult> Deposit([FromBody] DepositRequestModel requestModel)
+    {
+        try
+        {
+            await _service.DepositAsync(requestModel.AccountNum, requestModel.Amount);
+
+            var responseModel = new DepositResponseModel
+            {
+                DepositAmount = requestModel.Amount,
+                TxnTime = DateTime.UtcNow 
+            };
+
+            return Ok(responseModel);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            // Handle other exceptions if needed.
+            return StatusCode(500, "An error occurred during the deposit process.");
+        }
+    }
+
+    [HttpPost("withdraw")]
+    public async Task<IActionResult> Withdraw([FromBody] WithdrawalRequestModel requestModel)
+    {
+        try
+        {
+            var withdrawalResponse = await _service.WithdrawAsync(requestModel.AccountNum, requestModel.Amount);
+
+            return Ok(withdrawalResponse);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            // Handle other exceptions if needed.
+            return StatusCode(500, "An error occurred during the withdrawal process.");
+        }
+
+    }
+
+    [HttpGet("all")]
+    public async Task<IActionResult> GetAllTransactions()
+    {
+        try
+        {
+            var transactions = await _service.GetAllTransactionsAsync();
+            return Ok(transactions);
+        }
+        catch (Exception ex)
+        {
+            // Handle exceptions if needed.
+            return StatusCode(500, "An error occurred while fetching the transactions.");
+        }
+    }
+}
     

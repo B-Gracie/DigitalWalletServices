@@ -30,6 +30,20 @@ public class CustomerController : ControllerBase
         // var result = await _service.GetAllAsync();
         //
         // return Ok(result);
+    } 
+    
+    [HttpGet("AccountNum:string")]
+    public async Task<IActionResult> GetByAccountNumber(string accountNum)
+    {
+        if (accountNum == null)
+        {
+            return NotFound();
+        }
+        var customers = await _service.GetByAccountNumber(accountNum);
+        {
+            return Ok(customers);
+ 
+        }
     }
 
     [HttpPost("AddAccount")]
@@ -52,7 +66,6 @@ public class CustomerController : ControllerBase
         }
         catch (Exception ex)
         {
-            // Handle the exception appropriately
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
     }

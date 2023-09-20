@@ -22,9 +22,9 @@ public class AccountManagerService
         }
         
 
-        public Task<Customer> GetByIdAsync(int Userid)
+        public Task<Customer> GetByAccountNumber (string accountNum)
         {
-            return _customerRepo.GetByIdAsync(Userid);
+            return _customerRepo.GetByAccountNumber(accountNum);
         }
 
 

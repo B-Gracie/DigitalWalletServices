@@ -23,11 +23,12 @@ public class CustomersTable : Migration
 
             Create.Table("Transactions").InSchema("Users")
                 .WithColumn("Id").AsInt32().PrimaryKey().Identity()
-                .WithColumn("CustomerId").AsInt32().NotNullable()
+                .WithColumn("CustomerId").AsInt32()
                 .WithColumn("AccountNum").AsString(50).NotNullable()
-                .WithColumn("TxnTime").AsDateTime().NotNullable()
-                .WithColumn("TxnAmount").AsDecimal().NotNullable()
-                .WithColumn("Balance").AsDecimal().NotNullable();
+                .WithColumn("DepositAmount").AsDecimal().NotNullable()
+                .WithColumn("Balance").AsDecimal().NotNullable()
+                .WithColumn("WithdrawalAmount").AsDecimal().NotNullable()
+                .WithColumn("TxnTime").AsDateTime().NotNullable();
 
             Create.ForeignKey("FK_Transactions_CustomerId_Customers_Id")
                 .FromTable("Transactions").InSchema("Users").ForeignColumn("CustomerId")
@@ -44,21 +45,4 @@ public class CustomersTable : Migration
     }
 
 
-
-/*Create.Table("Accounts").InSchema("Users")
-    .WithColumn("accountid").AsInt64().PrimaryKey()
-    .WithColumn("Userid").AsInt64()
-    .WithColumn("currentbal").AsCustom("numeric");
-
-Create.ForeignKey("transactions_accountid_fkey")
-    .FromTable("Transactions").InSchema("Users").ForeignColumn("accountid")
-    .ToTable("Accounts").InSchema("Users").PrimaryColumn("accountid");
-
-Create.ForeignKey("accounts_userid_fkey")
-    .FromTable("Accounts").InSchema("Users").ForeignColumn("Userid")
-    .ToTable("Customers").InSchema("Users").PrimaryColumn("Userid");*/
-
-        // Create.ForeignKey("accounts_currentbal_fkey")
-        //     .FromTable("Accounts").InSchema("Users").ForeignColumn("currentbal")
-        //     .ToTable("Transactions").InSchema("Users").PrimaryColumn("currentbal");
 
